@@ -1802,11 +1802,10 @@ def quagam(F,para):
             Root = np.exp((np.lib.scimath.log(Alpha*F)+DLOGG)/Alpha)
 
         for it in range(1,maxit+1):
-            #print(Root)
-            FUNC = spsp.gammainc(Alpha,Root.astype(np.float64))-F
+            FUNC = spsp.gammainc(Alpha,Root)-F
             RINC = FUNC*np.exp(DLOGG+Root-AM1*np.lib.scimath.log(Root))
             Root = Root-RINC
-            if (abs(FUNC) <= EPS).any():
+            if (abs(FUNC) <= EPS).all():
                 QUAGAM = Root*Beta
                 return(QUAGAM)
     else:
@@ -2063,7 +2062,7 @@ def quastn(F):
      0.142151175831644589e-6,  0.204426310338993979e-14]
 
     Q = F-0.5
-    if (abs(Q) > split1).any():
+    if (abs(Q) > split1).all():
         R=F
         if (Q >= 0).any():
             R = 1-F
