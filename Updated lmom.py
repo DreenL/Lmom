@@ -8,6 +8,11 @@ import numpy as np
 import scipy as sp
 import scipy.special as spsp
 
+def generate_gev_deviates(numerosita, xi, alpha, k):
+    #equivalent to randgev function in lmoments
+    #xi,alpha, k are parameters, ex. output of quagev
+    return genextreme.rvs(k, loc=xi, scale=alpha, size=numerosita)
+
 
 # In[ ]:
 
